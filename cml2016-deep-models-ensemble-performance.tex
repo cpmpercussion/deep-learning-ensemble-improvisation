@@ -187,8 +187,8 @@ neural network (RNN) with long short-term memory (LSTM) cells. The
 architecture of the networks mirrors the \emph{folkRNN} system
 described by Sturm et al.~\cite{Sturm:2016rz} and consist of three
 layers of 512 LSTM cells followed by a fully-connected softmax
-layer\footnote{The TensorFlow implementation was aided by the blog
-  posts of \emph{R2RT}\cite{R2RT-RNN:2016}}. In each case, the
+layer\footnote{The TensorFlow implementation was aided by recent blog
+  posts by \emph{R2RT}~\cite{R2RT-RNN:2016}.}. In each case, the
 networks were trained with minibatches of 64 performance examples each
 consisting of 120 time-steps. Each of these examples corresponds to a
 2-minute excerpt of a real collaborative performance. The networks
@@ -210,7 +210,7 @@ a performance.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{nn-ensemble-training}
-  \caption{The RNN was trained to predict a the ensemble states given
+  \caption{The RNN was trained to predict the ensemble states given
     the current lead state and previous ensemble
     states.}\label{fig:nn-ensemble-training}
 \end{figure}
@@ -258,7 +258,7 @@ neural network.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{duo-test-1}
+  \includegraphics[width=\textwidth]{duet-performance-512n-30ep-14}
   \caption{A generated duet with one lead performer (shown in red)
     taken from a real performance and an ANN-generated duo partner
     (shown in blue).}\label{fig:duo-model}
@@ -272,7 +272,8 @@ constructed by taking each performer as leader and constructing
 examples for each other player present in the performance. All
 ensemble performances from the corpus were treated in this manner and
 each sequence of 120 states was taken as a separate training example
-resulting in a total of 319948 examples.
+resulting in a total of 319948 examples. The network was trained for
+30 epochs taking 8.13 hours.
 
 Figure \ref{fig:duo-model} shows an example output from the network
 with a lead player taken from a real performance shown in red and a
@@ -280,8 +281,6 @@ generated duo partner shown in blue. The generated player shows a
 similar complexity to the lead player and appears to mimic the
 leader's gestures at some points in what, when sonified, could be a
 convincing duet performance.
-
-
 
 \subsection{Quartet}
 
@@ -311,7 +310,8 @@ The quartet model ANN was trained on the whole dataset of quartet
 performances. This dataset consisted of 33 performances with total
 length of 5.28 hours corresponding to 19023 gesture state
 measurements. The ANN was trained for 30 epochs using mini-batches of
-64 performance examples; training time was 9.42 hours.
+64 performance examples from the total corpus of 361560 examples;
+training time was 9.42 hours.
 
 An example of a generated ensemble performance is shown in Figure
 \ref{fig:quartet-model}. In this figure, the red line shows a real
