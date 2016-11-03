@@ -183,29 +183,29 @@ ANNs, multiple networks were trained corresponding to different
 ensemble situations. In the following sections, each network will be
 described and the results will be subjected to a preliminary
 evaluation. Each network uses the same architecture of a recurrent
-neural network (RNN) with long short-term memory (LSTM) cells. The
-architecture of the networks mirrors the \emph{folkRNN} system
-described by Sturm et al.~\cite{Sturm:2016rz} and consist of three
-layers of 512 LSTM cells followed by a fully-connected softmax
-layer\footnote{The TensorFlow implementation was aided by recent blog
-  posts by \emph{R2RT}~\cite{R2RT-RNN:2016}.}. In each case, the
-networks were trained with minibatches of 64 performance examples each
-consisting of 120 time-steps. Each of these examples corresponds to a
-2-minute excerpt of a real collaborative performance. The networks
-were implemented in TensorFlow~\cite{Abadi:2016wd} and were trained on
-an Nvidia GeForce GTX 1080 GPU.
+neural network (RNN) with long short-term memory (LSTM) cells. This
+architecture mirrors the \emph{folkRNN} system described by Sturm et
+al.~\cite{Sturm:2016rz} and consists of three layers of 512 LSTM cells
+followed by a fully-connected softmax layer\footnote{The TensorFlow
+  implementation was aided by recent blog posts by
+  \emph{R2RT}~\cite{R2RT-RNN:2016}.}. In each case, the networks were
+trained with minibatches of 64 performance examples each consisting of
+120 time-steps. Each of these examples corresponds to a 2-minute
+excerpt of a real collaborative performance. The networks were
+implemented in TensorFlow~\cite{Abadi:2016wd} and were trained on an
+Nvidia GeForce GTX 1080 GPU.
 
 \subsection{Representing Ensemble Behaviour}
 
 As previously mentioned, the goal of this work is to generate an
 ensemble score based on the real improvisation of one player. To
-achieve this, the ANNs were trained to the states of the ensemble
-given the current lead player's state, and the state of the ensemble
-at the previous time step. This arrangement is illustrated in Figure
-\ref{fig:nn-ensemble-training}. As the training data consisted of
-completely free improvisations, any player could be taken as the lead
-so several training examples could be generated from a single slice of
-a performance.
+achieve this, the ANNs were trained to output the states of the
+ensemble given the current lead player's state, and the state of the
+ensemble at the previous time step. This arrangement is illustrated in
+Figure \ref{fig:nn-ensemble-training}. As the training data consisted
+of completely free improvisations, any player could be taken as the
+lead so several training examples could be generated from a single
+slice of a performance.
 
 \begin{figure}
   \centering
@@ -329,9 +329,9 @@ recurrent neural networks with LSTM cells have been implemented and
 trained to generate duets and quartets in response to a single lead
 player. While visualising the results suggests that realistic ensemble
 interactions are being generated, further work needs to be done to
-clearly that the ensemble generations are accurate and demonstrate
-more interesting interactions than unrelated sequences. However, based
-on the current results, it may be most interesting to implement
+show that the generated ensemble responses are accurate and demonstrate more
+interesting interactions than unrelated sequences. However, based on
+the current results, it may be most interesting to implement
 sonifications of the generated gesture sequences so that they can be
 used in real-time performance as a computer accompaniment to a live
 touch-screen performer.
