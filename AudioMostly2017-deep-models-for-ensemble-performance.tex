@@ -1,50 +1,43 @@
-\documentclass[sigchi,review]{acmart}
-
+\documentclass[sigchi]{acmart} % authorversion=true
 \usepackage{booktabs} % For formal tables
 
-\setcopyright{rightsretained}
-\acmDOI{10.475/123_4}
-\acmISBN{123-4567-24-567/08/06}
-%Conference
-\acmConference{ACM Woodstock conference}{July 2017}{El Paso, Texas USA}
-%\acmYear{2017}
-\copyrightyear{2017}
-%\acmPrice{15.00}
+%\settopmatter{printacmref=false}
 
 \newcommand{\RR}{I\!\!R} %real numbers
 \newcommand{\Nat}{I\!\!N} %natural numbers
 \newcommand{\CC}{I\!\!\!\!C} %complex numbers
 
 \begin{document}
+
+\copyrightyear{2017} 
+\acmYear{2017} 
+\setcopyright{acmlicensed}
+\acmConference{AM '17}{August 23--26, 2017}{London, United Kingdom}\acmPrice{15.00}\acmDOI{10.1145/3123514.3123556}
+\acmISBN{978-1-4503-5373-1/17/08}
+
 \title{Deep Models for Ensemble Touch-Screen Improvisation}
 
 \author{Charles P. Martin}
-\orcid{1234-5678-9012}
+\orcid{0000-0001-5683-7529}
 \affiliation{%
   \institution{Department of Informatics}
   \streetaddress{University of Oslo, Norway}
-%  \city{Oslo} 
-%  \state{Norway} 
 }
 \email{charlepm@ifi.uio.no}
 
 \author{Kai Olav Ellefsen}
-\orcid{1234-5678-9012}
+\orcid{1234-5678-9012} %% todo fix this.
 \affiliation{%
   \institution{Department of Informatics}
-  \streetaddress{University of Oslo, Norway}
-%  \city{Oslo} 
-%  \state{Norway} 
+  \streetaddress{University of Oslo, Norway} 
 }
 \email{kaiolae@ifi.uio.no}
 
 \author{Jim Torresen}
-\orcid{1234-5678-9012}
+\orcid{1234-5678-9012} %% todo fix this.
 \affiliation{%
   \institution{Department of Informatics}
   \streetaddress{University of Oslo, Norway}
-%  \city{Oslo} 
-%  \state{Norway} 
 }
 \email{jimtoer@ifi.uio.no}
 
@@ -94,18 +87,18 @@ well~\cite{Wang:2014ul, Hamilton:2011aa}.
   \includegraphics[width=\columnwidth]{neural-mode-ensemble}
   \caption{Data from more than 150 collaborative sessions (left) has
     been used to create a neural model of ensemble interaction
-    focussed on touch interaction, and a prototype system that
+    focused on touch interaction, and a prototype system that
     accompanies a live performer
     (right).}\label{fig:performance-and-system}
 \end{figure}
 
 In previous research, Martin et al.~\cite{Martin:2016rm} captured a
-dataset of more than 150 collaborative performances on mobile
+data-set of more than 150 collaborative performances on mobile
 instruments as part of a project exploring the design and impact of
 networked mobile music interfaces (e.g., the left side of Figure
-\ref{fig:performance-and-system}). This dataset included both raw
+\ref{fig:performance-and-system}). This data-set included both raw
 touch-data and time series of interpreted touch-gestures sampled at a
-fixed interval. In the present research, we use this dataset to train
+fixed interval. In the present research, we use this data-set to train
 an artificial neural network (ANN), gesture-RNN, that imitates the
 behaviour of the ensemble based on the input of one user. We also
 present an application for the ANN in a system to automatically
@@ -173,7 +166,7 @@ long short-term memory (LSTM) cells. This architecture mirrors the
 \emph{folkRNN} system described by Sturm et al.~\cite{Sturm:2016rz}
 and consists of three layers of 512 LSTM cells followed by a
 fully-connected softmax layer. In each case, the networks were trained
-with minibatches of 64 performance examples each consisting of 120
+with mini-batches of 64 performance examples each consisting of 120
 time-steps. Each of these examples corresponds to a 2-minute excerpt
 of a real collaborative performance. The networks were implemented in
 TensorFlow~\cite{Abadi:2016wd} and were trained on an Nvidia GeForce
@@ -196,7 +189,7 @@ a single slice of a performance.
     states.}\label{fig:nn-ensemble-training}
 \end{figure}
 
-In the dataset, each performer's actions are represented by one of
+In the data-set, each performer's actions are represented by one of
 nine touch-gestures (including ``nothing''), these are stored as
 integers in the interval $[0,8]$. We define a simple encoding
 $\mathbb{N}_{9}^n \rightarrow \mathbb{N}_{9^n}$ to represent multiple
@@ -256,8 +249,8 @@ performer in the group considered as a lead player. As the ordering of
 the other three players was significant in the encoding (but not in
 the actual performance), a separate training example was constructed
 for each permutation of the other players in the ensemble. The quartet
-model gesture-RNN was trained on the whole dataset of quartet
-performances. This dataset consisted of 33 performances with total
+model gesture-RNN was trained on the whole data-set of quartet
+performances. This data-set consisted of 33 performances with total
 length of 5.28 hours corresponding to 19023 gesture state
 measurements. The ANN was trained for 30 epochs using mini-batches of
 64 performance examples from the total corpus of 361560 examples;
@@ -323,7 +316,7 @@ could be used in performances or installations that explore this
 neural model of ensemble interaction. In this setup the separate
 iPads and speakers embody the simulated ensemble and allow the
 gesture-RNN's contribution to the performance to be examined. Other
-performance sitautions, such as representing the ensemble performers
+performance situations, such as representing the ensemble performers
 within a single app, may also be possible, and might allow individual
 performers to enjoy ensemble-like experiences.
 
@@ -344,7 +337,7 @@ in real-time. This system could be used in live-performances,
 installations, as well as to help evaluate the performance of the
 gesture-RNN model.
 
-\subsubsection*{Acknowledgments}
+\subsubsection*{Acknowledgements}
 This work is supported by The Research Council of Norway as
 a part of the Engineering Predictability with Embodied Cognition
 (EPEC) project, under grant agreement 240862.
