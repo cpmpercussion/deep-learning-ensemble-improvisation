@@ -169,7 +169,7 @@ fully-connected softmax layer. In each case, the networks were trained
 with mini-batches of 64 performance examples each consisting of 120
 time-steps. Each of these examples corresponds to a 2-minute excerpt
 of a real collaborative performance. The networks were implemented in
-TensorFlow~\cite{Abadi:2016wd} and were trained on an Nvidia GeForce
+TensorFlow and were trained on an Nvidia GeForce
 GTX 1080 GPU.
 
 \subsection{Representing Ensemble Behaviour}
@@ -196,9 +196,9 @@ $\mathbb{N}_{9}^n \rightarrow \mathbb{N}_{9^n}$ to represent multiple
 performers as one positive integer as follows. Given a set of
 performer states $g_1, g_2, \ldots, g_n$, where the $g_i \in G$ (a
 finite set of $j$ states), the states can be encoded as:
-\begin{equation}
-g_1j^0 + g_2j^1 + g_3j^2 + \ldots + g_nj^{n-1}
-\end{equation}
+%\begin{equation}
+$ g_1j^0 + g_2j^1 + g_3j^2 + \ldots + g_nj^{n-1} $.
+%\end{equation}
 This encoding allows any ensemble state or combination of lead player
 and ensemble states to be represented as a unique integer and thus as
 a one-hot encoding on the inputs and outputs of the neural network.
@@ -281,15 +281,15 @@ second by Metatone Classifier. This gesture is used as the lead
 performer input for the gesture-RNN. The ensemble inputs for this RNN
 are initialised to the nothing gesture at the beginning of the
 performance. Output gestures from the RNN are sonified in the
-PhaseRings app running on two other iPads (the third output is not
-sonified). An extension to Metatone Classifier generates sequences of
-touch events that are sent to the ensemble iPads in response to each
-signal from the gesture-RNN. These touch sequences are produced
-concatenatively from 5-second chunks of touch-data recordings from
-live performances with PhaseRings and other iPad apps. The chunks have
-been labelled with their classified gesture and a random chunk is
-chosen and streamed to each ensemble iPad every five seconds or
-whenever a different gestural state is received from the RNN.
+PhaseRings app running on three other iPads. An extension to Metatone
+Classifier generates sequences of touch events that are sent to the
+ensemble iPads in response to each signal from the gesture-RNN. These
+touch sequences are produced concatenatively from 5-second chunks of
+touch-data recordings from live performances with PhaseRings and other
+iPad apps. The chunks have been labelled with their classified gesture
+and a random chunk is chosen and streamed to each ensemble iPad every
+five seconds or whenever a different gestural state is received from
+the RNN.
 
 \begin{figure}
   \centering
