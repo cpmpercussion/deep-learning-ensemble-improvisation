@@ -140,9 +140,9 @@ ensemble performances with a total time of 9.8 hours.
 
 Previous work has defined a method for interpreting raw touch
 information (i.e., the time and location of taps and swipes) as a
-sequence of continuous touch gestures~\cite{Martin:2015jk}. The
-resulting sequences can be analysed to examine the structure of
-performances.
+sequence of continuous touch gestures~\cite{Martin:2015jk} such as
+``slow taps'', ``small swirls'', and ``fast swipes''. The resulting
+sequences can be analysed to examine the structure of performances.
 
 Working with this high-level data has advantages and disadvantages.
 The state space is small (there are only 9 gestures in the vocabulary)
@@ -212,9 +212,7 @@ a one-hot encoding on the inputs and outputs of the neural network.
   \caption{A generated duet (above) and quartet (below) where one lead
     performer (shown in red) has been accompanied by ANN-generated
     performers. These results
-    show some realistic ensemble interaction and suggest that this
-    model might be useful for practical
-    applications.}\label{fig:model-examples}
+    show some realistic ensemble interaction.}\label{fig:model-examples}
 \end{figure}
 
 The simplest ensemble configuration is a duet between two performers.
@@ -248,13 +246,11 @@ Training data was constructed similarly to the duet model, with each
 performer in the group considered as a lead player. As the ordering of
 the other three players was significant in the encoding (but not in
 the actual performance), a separate training example was constructed
-for each permutation of the other players in the ensemble. The quartet
-model gesture-RNN was trained on the whole data-set of quartet
-performances. This data-set consisted of 33 performances with total
+for each permutation of players. The quartet model gesture-RNN was
+trained on the whole data-set of 33 quartet performances with total
 length of 5.28 hours corresponding to 19023 gesture state
-measurements. The ANN was trained for 30 epochs using mini-batches of
-64 performance examples from the total corpus of 361560 examples;
-training time was 9.42 hours.
+measurements. The ANN was trained for 30 epochs on a corpus of 361560
+examples; training time was 9.42 hours.
 
 An example of a generated ensemble performance is shown in the lower
 part of Figure \ref{fig:model-examples}. In this figure, the red line
@@ -297,6 +293,14 @@ the RNN.
   \caption{The live performance system classifies gestures from a live
   performer, generates ensemble gestures, then plays back synthesised
   touch events.}\label{fig:live-performance-system}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{neural-ipad-band-demo.jpg}
+  \caption{A performance with the live performance system, a video is
+    available at
+    \url{https://doi.org/10.5281/zenodo.831910}}\label{fig:live-system-demo}
 \end{figure}
 
 So far, this live performance system has only been used within our
