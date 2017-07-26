@@ -1,0 +1,1 @@
+This research presents a neural network model of free-improvised  music performed on touch-screen apps. The model is applied in an interactive system where a lead performer is accompanied by a neural network controlled ensemble.

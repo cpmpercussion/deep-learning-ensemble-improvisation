@@ -35,21 +35,7 @@
 \email{jimtoer@ifi.uio.no}
 
 \begin{abstract}
-  For many, the pursuit and enjoyment of musical performance goes
-  hand-in-hand with collaborative creativity, whether in a choir, jazz
-  combo, orchestra, or rock band. However, few musical interfaces use
-  the affordances of computers to create or enhance ensemble musical
-  experiences. One possibility for such a system would be to use an
-  artificial neural network (ANN) to model the way other musicians
-  respond to a single performer. Some forms of music have
-  well-understood rules for interaction; however, this is not the case
-  for free improvisation with new touch-screen instruments where
-  styles of interaction may be discovered in each new performance.
-  This paper describes an ANN model of ensemble interactions trained
-  on a corpus of such ensemble touch-screen improvisations. The
-  results show realistic ensemble interactions and the model has been
-  used to implement a live performance system where a lead performer
-  is accompanied by the predicted and sonified touch gestures of two virtual players.
+  For many, the pursuit and enjoyment of musical performance goes hand-in-hand with collaborative creativity, whether in a choir, jazz combo, orchestra, or rock band. However, few musical interfaces use the affordances of computers to create or enhance ensemble musical experiences. One possibility for such a system would be to use an artificial neural network (ANN) to model the way other musicians respond to a single performer. Some forms of music have well-understood rules for interaction; however, this is not the case for free improvisation with new touch-screen instruments where styles of interaction may be discovered in each new performance. This paper describes an ANN model of ensemble interactions trained on a corpus of such ensemble touch-screen improvisations. The results show realistic ensemble interactions and the model has been used to implement a live performance system where a performer is accompanied by the predicted and sonified touch gestures of three virtual players.
 \end{abstract}
 
 \begin{CCSXML}
@@ -94,7 +80,7 @@ well~\cite{Wang:2014ul, Hamilton:2011aa}.
   \includegraphics[width=\columnwidth]{neural-mode-ensemble}
   \caption{Data from more than 150 collaborative sessions (left) has
     been used to create a neural model of ensemble interaction
-    focused on touch interaction, and a prototype system that
+    focused on touch gestures, and a prototype system that
     accompanies a live performer
     (right).}\label{fig:performance-and-system}
 \end{figure}
@@ -138,8 +124,7 @@ RNN.
 \subsection{Interpreting Touch Data}
 
 Collaborative touch-screen interaction data was obtained from a
-publicly available corpus of collaborative touch-screen
-performances~\cite{Martin:2016fc}. This corpus includes data from more
+publicly available corpus of performances~\cite{Martin:2016fc}. This corpus includes data from more
 than 150 performances from rehearsals, concerts, installations, and
 demonstrations. For the present research, only ensemble improvisation
 data from this corpus was used. This consisted of 72 improvised
