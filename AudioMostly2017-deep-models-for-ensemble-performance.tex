@@ -1,11 +1,6 @@
 \documentclass[sigchi]{acmart} % authorversion=true
 \usepackage{booktabs} % For formal tables
-
 %\settopmatter{printacmref=false}
-
-\newcommand{\RR}{I\!\!R} %real numbers
-\newcommand{\Nat}{I\!\!N} %natural numbers
-\newcommand{\CC}{I\!\!\!\!C} %complex numbers
 
 \begin{document}
 
@@ -26,7 +21,6 @@
 \email{charlepm@ifi.uio.no}
 
 \author{Kai Olav Ellefsen}
-\orcid{1234-5678-9012} %% todo fix this.
 \affiliation{%
   \institution{Department of Informatics}
   \streetaddress{University of Oslo, Norway} 
@@ -34,7 +28,6 @@
 \email{kaiolae@ifi.uio.no}
 
 \author{Jim Torresen}
-\orcid{1234-5678-9012} %% todo fix this.
 \affiliation{%
   \institution{Department of Informatics}
   \streetaddress{University of Oslo, Norway}
@@ -55,7 +48,7 @@
   This paper describes an ANN model of ensemble interactions trained
   on a corpus of such ensemble touch-screen improvisations. The
   results show realistic ensemble interactions and the model has been
-  used to implement a live-performance system where a lead performer
+  used to implement a live performance system where a lead performer
   is accompanied by the predicted and sonified touch gestures of two virtual players.
 \end{abstract}
 
@@ -111,7 +104,7 @@ data set of more than 150 collaborative performances on mobile
 instruments as part of a project exploring the design and impact of
 networked mobile music interfaces, e.g., the left side of Figure
 \ref{fig:performance-and-system}. This data set included both raw
-touch-data and time series of interpreted touch gestures sampled at a
+touch data and time series of interpreted touch gestures sampled at a
 fixed interval. In the present research, we use this data set to train
 an artificial neural network (ANN), called \emph{gesture-RNN}, that imitates the
 behaviour of the ensemble based on the input of one user. We also
@@ -123,7 +116,7 @@ live performance would not be possible.
 Many improvised styles (e.g., jazz), have ensemble interactions based
 on well-defined rules. Machine learning systems such as the
 \emph{Reflexive Looper}\cite{Pachet:2013kq} and
-\emph{SongSmith}~\cite{Morris:2008qe} take advantage of these rules to
+\emph{MySong}~\cite{Simon:2008dp} take advantage of these rules to
 create appropriate accompaniments. In the present research, the
 improvised performances were ``free'', that is, performers were
 allowed to perform in any way they wished within the constraints of
@@ -135,7 +128,7 @@ the data, without assistance from music theory.
 It has previously been shown that long short-term memory (LSTM)
 recurrent neural networks (RNNs) can be used for composing blues
 music~\cite{Eck:2007rw}, folk tunes~\cite{Sturm:2016rz}, as well as
-polyphonic music~\cite{Walder:2016le}. These networks have not, so
+polyphonic music~\cite{Walder:2016aa}. These networks have not, so
 far, been applied to free-form improvised music using new interfaces
 such as touch-screens. In this work, we demonstrate that such networks
 can learn and generate these ensemble interactions. We also introduce
@@ -145,7 +138,7 @@ RNN.
 \subsection{Interpreting Touch Data}
 
 Collaborative touch-screen interaction data was obtained from a
-publicly-available corpus of collaborative touch-screen
+publicly available corpus of collaborative touch-screen
 performances~\cite{Martin:2016fc}. This corpus includes data from more
 than 150 performances from rehearsals, concerts, installations, and
 demonstrations. For the present research, only ensemble improvisation
@@ -300,7 +293,7 @@ PhaseRings app running on three other iPads. An extension to Metatone
 Classifier generates sequences of touch events that are sent to the
 ensemble iPads in response to each signal from the gesture-RNN. These
 touch sequences are produced concatenatively from 5-second chunks of
-touch-data recordings from live performances with PhaseRings and other
+touch data recordings from live performances with PhaseRings and other
 iPad apps. The chunks have been labelled with their classified gesture
 and a random chunk is chosen and streamed to each ensemble iPad every
 five seconds or whenever a different gestural state is received from
@@ -363,6 +356,6 @@ a part of the Engineering Predictability with Embodied Cognition
 (EPEC) project, under grant agreement 240862.
 
 \bibliographystyle{ACM-Reference-Format}
-\bibliography{2013ComputerMusic}
+\bibliography{references}
 
 \end{document}
