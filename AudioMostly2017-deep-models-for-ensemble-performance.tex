@@ -42,7 +42,21 @@
 \email{jimtoer@ifi.uio.no}
 
 \begin{abstract}
-  For many, the pursuit and enjoyment of musical performance goes hand-in-hand with collaborative creativity, whether in a choir, jazz combo, orchestra, or rock band. However, few musical interfaces use the affordances of computers to create or enhance ensemble musical experiences. One possibility for such a system would be to use an artificial neural network (ANN) to model the way other musicians respond to a single performer. Some forms of music have well-understood rules for interaction; however, this is not the case for free improvisation with new touch-screen instruments where styles of interaction may be discovered in each new performance. This paper describes an ANN model of ensemble interactions trained on a corpus of such ensemble touch-screen improvisations. The results show realistic ensemble interactions and the model has been used to implement a live-performance system where a lead performer is accompanied by the predicted and sonified touch-gestures of two virtual players.
+  For many, the pursuit and enjoyment of musical performance goes
+  hand-in-hand with collaborative creativity, whether in a choir, jazz
+  combo, orchestra, or rock band. However, few musical interfaces use
+  the affordances of computers to create or enhance ensemble musical
+  experiences. One possibility for such a system would be to use an
+  artificial neural network (ANN) to model the way other musicians
+  respond to a single performer. Some forms of music have
+  well-understood rules for interaction; however, this is not the case
+  for free improvisation with new touch-screen instruments where
+  styles of interaction may be discovered in each new performance.
+  This paper describes an ANN model of ensemble interactions trained
+  on a corpus of such ensemble touch-screen improvisations. The
+  results show realistic ensemble interactions and the model has been
+  used to implement a live-performance system where a lead performer
+  is accompanied by the predicted and sonified touch gestures of two virtual players.
 \end{abstract}
 
 \begin{CCSXML}
@@ -92,14 +106,14 @@ well~\cite{Wang:2014ul, Hamilton:2011aa}.
     (right).}\label{fig:performance-and-system}
 \end{figure}
 
-In previous research, Martin et al.~\cite{Martin:2016rm} captured a
-data-set of more than 150 collaborative performances on mobile
+In previous research, Martin and Gardner~\cite{Martin:2016rm} captured a
+data set of more than 150 collaborative performances on mobile
 instruments as part of a project exploring the design and impact of
-networked mobile music interfaces (e.g., the left side of Figure
-\ref{fig:performance-and-system}). This data-set included both raw
-touch-data and time series of interpreted touch-gestures sampled at a
-fixed interval. In the present research, we use this data-set to train
-an artificial neural network (ANN), gesture-RNN, that imitates the
+networked mobile music interfaces, e.g., the left side of Figure
+\ref{fig:performance-and-system}. This data set included both raw
+touch-data and time series of interpreted touch gestures sampled at a
+fixed interval. In the present research, we use this data set to train
+an artificial neural network (ANN), called \emph{gesture-RNN}, that imitates the
 behaviour of the ensemble based on the input of one user. We also
 present an application for the ANN in a system to automatically
 accompany individual users of a mobile music app, thus extending the
@@ -138,17 +152,17 @@ demonstrations. For the present research, only ensemble improvisation
 data from this corpus was used. This consisted of 72 improvised
 ensemble performances with a total time of 9.8 hours.
 
-Previous work has defined a method for interpreting raw touch
+Previous work~\cite{Martin:2015jk} has defined a method for interpreting raw touch
 information (i.e., the time and location of taps and swipes) as a
-sequence of continuous touch gestures~\cite{Martin:2015jk} such as
+sequence of continuous touch gestures such as
 ``slow taps'', ``small swirls'', and ``fast swipes''. The resulting
 sequences can be analysed to examine the structure of performances.
 
 Working with this high-level data has advantages and disadvantages.
-The state space is small (there are only 9 gestures in the vocabulary)
+The state space is small as there are only 9 gestures in the vocabulary,
 and these are sampled at a regular rate (1Hz) which reduces the
 complexity of the data. Plots of these gesture sequences resemble
-graphical scores and changes in performance style across the ensemble
+graphical scores, and changes in performance style across the ensemble
 can be seen at a glance. The gesture sequences, however, do not have a
 one-to-one mapping with interaction in the app (e.g., tapping in any
 part of the screen could be interpreted as the ``slow taps'' gesture)
@@ -166,11 +180,13 @@ long short-term memory (LSTM) cells. This architecture mirrors the
 \emph{folkRNN} system described by Sturm et al.~\cite{Sturm:2016rz}
 and consists of three layers of 512 LSTM cells followed by a
 fully-connected softmax layer. In each case, the networks were trained
-with mini-batches of 64 performance examples each consisting of 120
-time-steps. Each of these examples corresponds to a 2-minute excerpt
-of a real collaborative performance. The networks were implemented in
-TensorFlow and were trained on an Nvidia GeForce
-GTX 1080 GPU.
+with mini-batches of 64 examples of 120
+time steps using the Adam optimiser with a learning
+rate of $0.0001$. Each example corresponded to a 2-minute
+excerpt of a real performance. The networks were
+implemented in TensorFlow and were trained on an Nvidia GeForce GTX
+1080 GPU. Source code for gesture-RNN is available at:
+\url{https://doi.org/10.5281/zenodo.834267}
 
 \subsection{Representing Ensemble Behaviour}
 
@@ -189,15 +205,16 @@ a single slice of a performance.
     states.}\label{fig:nn-ensemble-training}
 \end{figure}
 
-In the data-set, each performer's actions are represented by one of
-nine touch-gestures (including ``nothing''), these are stored as
+In the data set, each performer's actions are represented by one of
+nine touch gestures (including ``nothing''); these are stored as
 integers in the interval $[0,8]$. We define a simple encoding
 $\mathbb{N}_{9}^n \rightarrow \mathbb{N}_{9^n}$ to represent multiple
-performers as one positive integer as follows. Given a set of
-performer states $g_1, g_2, \ldots, g_n$, where the $g_i \in G$ (a
-finite set of $j$ states), the states can be encoded as:
+performers as one positive integer as follows. Given a set of $n$
+performer states $g_1, g_2, \ldots, g_n$, where the $g_i$ are integers
+in $[0,8]$, the states can be encoded as:
 %\begin{equation}
-$ g_1j^0 + g_2j^1 + g_3j^2 + \ldots + g_nj^{n-1} $.
+$ g_19^0 + g_29^1 + g_39^2 + \ldots + g_n9^{n-1} $, which is an integer
+in $[0,9^n - 1]$.
 %\end{equation}
 This encoding allows any ensemble state or combination of lead player
 and ensemble states to be represented as a unique integer and thus as
@@ -217,14 +234,16 @@ a one-hot encoding on the inputs and outputs of the neural network.
 
 The simplest ensemble configuration is a duet between two performers.
 In this model, the input for the network is the current gesture of the
-lead performer and the previous gesture of the second player while the
-output is the current gesture of the second player. Training data was
+lead performer and the previous gesture of the second player (81 classes) while the
+output is the current gesture of the second player (9 classes). Training data was
 constructed by taking each performer as leader and constructing
 examples for each other player present in the performance. All
 ensemble performances from the corpus were treated in this manner and
 each sequence of 120 states was taken as a separate training example
 resulting in a total of 319948 examples. The network was trained for
-30 epochs taking 8.13 hours.
+30 epochs taking 8.13 hours. This reduced the training loss (mean
+cross-entropy of predictions and labels over a batch) from 2.19 to
+0.07.
 
 The upper part of Figure \ref{fig:model-examples} shows an example
 output from the network with a lead player taken from a real
@@ -239,18 +258,18 @@ gestures at some points.
 Performances with four players were the most numerous 
 configuration in the corpus. In this model the input for the network
 was the current gesture of lead player and previous gesture of the
-three other players. The output was the predicted gestures for the
-three others in the group.
+three other players (6561 classes). The output was the predicted gestures for the
+three others in the group (729 classes).
 
 Training data was constructed similarly to the duet model, with each
 performer in the group considered as a lead player. As the ordering of
 the other three players was significant in the encoding (but not in
 the actual performance), a separate training example was constructed
 for each permutation of players. The quartet model gesture-RNN was
-trained on the whole data-set of 33 quartet performances with total
+trained on the whole data set of 33 quartet performances with total
 length of 5.28 hours corresponding to 19023 gesture state
 measurements. The ANN was trained for 30 epochs on a corpus of 361560
-examples; training time was 9.42 hours.
+examples reducing training loss from 6.59 to 0.07; training time was 9.42 hours.
 
 An example of a generated ensemble performance is shown in the lower
 part of Figure \ref{fig:model-examples}. In this figure, the red line
